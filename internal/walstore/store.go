@@ -174,9 +174,6 @@ func (s *Store) Get(key []byte) (value []byte, ok bool) {
 func (s *Store) Snapshot() map[string][]byte {
 	s.mu.RLock()
 	defer s.mu.RUnlock()
-	if len(s.index) == 0 {
-		return nil
-	}
 	out := make(map[string][]byte, len(s.index))
 	for k, v := range s.index {
 		out[k] = v
